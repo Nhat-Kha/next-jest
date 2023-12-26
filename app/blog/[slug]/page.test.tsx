@@ -6,11 +6,13 @@ import '@testing-library/jest-dom'
 import Page from './page'
 
 it('App Router: Works with dynamic route segments', () => {
-  render(<Page params={{ slug: 'Test' }} />)
-  expect(screen.getByRole('heading')).toHaveTextContent('Slug: Test')
-})
+  render(<Page params={{ slug: 'Test' }} />);
+  const heading = screen.getByRole('heading');
+  expect(heading).toBeInTheDocument(); // Ensure the element exists
+  expect(heading).toHaveTextContent('Slug: Test');
+});
 
 it("HCM should be in the document", () => {
-  render(<Page params={{slug:'Test'}} />)
-  expect(screen.getByText('HCM')).toBeInTheDocument()
-})
+  render(<Page params={{ slug: 'Test' }} />);
+  expect(screen.getByText('HCM')).toBeInTheDocument();
+});
